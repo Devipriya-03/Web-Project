@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+	
+{% block body %}
+
+	please enter all the details!!!!
+
+{% endblock %}
