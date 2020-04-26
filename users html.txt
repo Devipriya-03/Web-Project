@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Details</title>
+</head>
+<body>
+	<table border="1">
+		<tr>
+			<td>Name</td>
+			<td>Email</td>
+		</tr>
+		{% for user in userdetails %}
+		<tr>
+			<td> {{ user[0] }}</td>
+			<td> {{ user[1] }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</body>
+</html>

@@ -1,0 +1,44 @@
+from flask import Flask,redirect, url_for,render_template, request
+from flask_mysqldb import MySQL
+
+
+app=Flask(__name__)
+
+
+
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'priya'
+app.config['MYSQL_DB'] = 'basicflaskapp'
+
+
+mysql = MySQL(app)
+
+
+@app.route("/")
+def home():
+	return render_template("login1.html")
+
+
+@app.route("/login",methods=["POST"])
+def login():
+	name=request.form.get("name")
+	email=request.form.get("email")
+	cur = mysql.connection.cursor()
+	cur.execute("insert into users(name, email) values(%s, %s)",(name, email))
+	mysql.connection.commit()
+	cur.close()
+	return redirect('/users')
+
+
+
+@app.route('/users')
+def users():
+	cur =mysql.connection.cursor()
+	result = cur.execute("select *from users")
+	if result > 0:
+		userdetails = cur.fetchall()
+		return render_template('users.html',userdetails=userdetails)
+
+if __name__=="__main__":
+	app.run()

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Page</title>
+</head>
+<body>
+	<form action ="/login" method ="post">
+		Name  <input type="text" name="name"/>
+		<br><br>
+		Email  <input type="email" id="email" name="email"/>
+		<br><br>
+		<input type="submit" value="login"/>
+	</form>
+</body>
+</html>
